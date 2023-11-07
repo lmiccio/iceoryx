@@ -25,6 +25,8 @@
 #include "iceoryx_posh/internal/popo/ports/publisher_port_data.hpp"
 #include "iceoryx_posh/internal/popo/ports/publisher_port_user.hpp"
 #include "iceoryx_posh/mepoo/chunk_header.hpp"
+#include "iceoryx_posh/popo/publisher_options.hpp"
+#include "iceoryx_posh/popo/subscriber_options.hpp"
 #include "iceoryx_posh/roudi/introspection_types.hpp"
 
 #include <atomic>
@@ -74,6 +76,7 @@ class PortIntrospection
                 , process(portData.m_runtimeName)
                 , service(portData.m_serviceDescription)
                 , node(portData.m_nodeName)
+                , options(portData.m_options)
             {
             }
 
@@ -81,6 +84,7 @@ class PortIntrospection
             RuntimeName_t process;
             capro::ServiceDescription service;
             NodeName_t node;
+            popo::PublisherOptions options;
 
             using TimePointNs_t = mepoo::TimePointNs_t;
             using DurationNs_t = mepoo::DurationNs_t;
@@ -101,6 +105,7 @@ class PortIntrospection
                 , process(portData.m_runtimeName)
                 , service(portData.m_serviceDescription)
                 , node(portData.m_nodeName)
+                , options(portData.m_options)
             {
             }
 
@@ -108,6 +113,7 @@ class PortIntrospection
             RuntimeName_t process;
             capro::ServiceDescription service;
             NodeName_t node;
+            popo::SubscriberOptions options;
         };
 
         struct ConnectionInfo

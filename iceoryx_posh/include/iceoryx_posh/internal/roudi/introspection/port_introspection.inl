@@ -545,6 +545,7 @@ PortIntrospection<PublisherPort, SubscriberPort>::PortData::prepareTopic(PortInt
                 publisherData.m_caproServiceID = publisherInfo.service.getServiceIDString();
                 publisherData.m_caproEventMethodID = publisherInfo.service.getEventIDString();
 
+                publisherData.m_publisherOptions = publisherInfo.options;
                 m_publisherList.emplace_back(publisherData);
                 publisherInfo.index = index++;
             }
@@ -569,6 +570,7 @@ PortIntrospection<PublisherPort, SubscriberPort>::PortData::prepareTopic(PortInt
                 subscriberData.m_caproInstanceID = subscriberInfo.service.getInstanceIDString();
                 subscriberData.m_caproServiceID = subscriberInfo.service.getServiceIDString();
                 subscriberData.m_caproEventMethodID = subscriberInfo.service.getEventIDString();
+                subscriberData.m_subscriberOptions = subscriberInfo.options;
                 m_subscriberList.emplace_back(subscriberData);
             }
         }

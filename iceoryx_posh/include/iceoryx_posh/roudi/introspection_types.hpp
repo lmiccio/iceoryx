@@ -19,8 +19,10 @@
 
 #include "iceoryx_hoofs/cxx/vector.hpp"
 #include "iceoryx_posh/capro/service_description.hpp"
+#include "iceoryx_posh/popo/publisher_options.hpp"
 #include "iceoryx_posh/iceoryx_posh_types.hpp"
 #include "iceoryx_posh/mepoo/mepoo_config.hpp"
+#include "iceoryx_posh/popo/subscriber_options.hpp"
 
 namespace iox
 {
@@ -73,13 +75,17 @@ struct PortData
     NodeName_t m_node;
 };
 
-using SubscriberPortData = PortData;
+struct SubscriberPortData : public PortData
+{
+    iox::popo::SubscriberOptions m_subscriberOptions{};
+};
 
 /// @brief container for publisher port introspection data.
 struct PublisherPortData : public PortData
 {
     uint64_t m_publisherPortID{0};
     iox::capro::Interfaces m_sourceInterface{iox::capro::Interfaces::INTERFACE_END};
+    iox::popo::PublisherOptions m_publisherOptions{};
 };
 
 /// @brief the topic for the port introspection that a user can subscribe to
