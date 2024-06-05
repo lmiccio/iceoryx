@@ -45,13 +45,14 @@ mepoo::MePooConfig DefaultRouDiMemory::introspectionMemPoolConfig() const noexce
     // which are caching different samples; could probably be reduced to 2 with the instruction to not cache the
     // introspection samples
     constexpr uint32_t CHUNK_COUNT{10U};
+    constexpr uint32_t PORT_INTROSPECTION_CHUNK_COUNT{32U};
     mepoo::MePooConfig mempoolConfig;
     mempoolConfig.m_mempoolConfig.push_back(
         {cxx::align(static_cast<uint32_t>(sizeof(roudi::MemPoolIntrospectionInfoContainer)), ALIGNMENT), CHUNK_COUNT});
     mempoolConfig.m_mempoolConfig.push_back(
         {cxx::align(static_cast<uint32_t>(sizeof(roudi::ProcessIntrospectionFieldTopic)), ALIGNMENT), CHUNK_COUNT});
     mempoolConfig.m_mempoolConfig.push_back(
-        {cxx::align(static_cast<uint32_t>(sizeof(roudi::PortIntrospectionFieldTopic)), ALIGNMENT), CHUNK_COUNT});
+        {cxx::align(static_cast<uint32_t>(sizeof(roudi::PortIntrospectionFieldTopic)), ALIGNMENT), PORT_INTROSPECTION_CHUNK_COUNT});
     mempoolConfig.m_mempoolConfig.push_back(
         {cxx::align(static_cast<uint32_t>(sizeof(roudi::PortThroughputIntrospectionFieldTopic)), ALIGNMENT),
          CHUNK_COUNT});
